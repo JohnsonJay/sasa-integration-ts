@@ -1,0 +1,27 @@
+{
+  /* Visit https://firebase.google.com/docs/database/security to learn more about security rules. */
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "sasa-raw-data": {
+     	"sasa-data-list": {
+        ".indexOn": ["polygonFeatureDataSynced", "pointFeatureDataSynced", "assessmentFeatureDataSynced"]
+      }
+    },
+    "polygon-feature-layers": {
+      "polygon-layers-list": {
+        ".indexOn": ["featureLayerCreated"]
+      }
+    },
+      "point-feature-layers": {
+        "point-layers-list": {
+          ".indexOn": ["featureLayerCreated"]
+        }
+      },
+      "assessment-feature-layers": {
+        "assessment-layer-list": {
+          ".indexOn": ["assessmentLayerCreated"]
+        }
+      }
+  }
+}
