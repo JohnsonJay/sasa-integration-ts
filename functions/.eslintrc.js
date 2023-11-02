@@ -29,5 +29,14 @@ module.exports = {
         "import/no-unresolved": 0,
         "indent": ["error", 4],
         "object-curly-spacing": ["error", "always"],
+        "max-len": ["error", {
+            "code": 99,
+            "tabWidth": 4,
+            "ignoreComments": true,
+            "ignoreTrailingComments": true,
+            "ignoreUrls": true,
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": true,
+        }],
     },
 };
