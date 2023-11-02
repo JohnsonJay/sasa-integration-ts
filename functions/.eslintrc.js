@@ -38,5 +38,6 @@ module.exports = {
             "ignoreStrings": true,
             "ignoreTemplateLiterals": true,
         }],
+        "camelcase": 0,
     },
 };
