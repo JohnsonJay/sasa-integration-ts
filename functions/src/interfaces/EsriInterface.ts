@@ -1,6 +1,14 @@
-export interface EsriResponse {
+export interface EsriAddResult {
     success: boolean;
-    addResult: [];
+    objectId?: number;
+    error?: {
+        code: number;
+        description: string;
+    }
+}
+
+export interface EsriResponse {
+    addResults: EsriAddResult[]
 }
 
 export interface Location {
@@ -33,6 +41,8 @@ export interface EsriAssessmentFeatureLayer {
         income?: string;
         dependants?: string;
         transport?: string;
+        score?: number;
+        distance_to_homestead?: number;
     };
 }
 

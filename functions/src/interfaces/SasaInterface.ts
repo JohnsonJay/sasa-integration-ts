@@ -11,7 +11,7 @@ export interface AssessmentsPayloadFieldCorridorAwarenessFormFields {
 
 export interface AssessmentPayloadCorridorsQuestion {
     label?: string;
-    answer?: boolean;
+    answer?: boolean | string;
 }
 
 export interface AssessmentPayloadAwarenessFields {
@@ -32,11 +32,29 @@ export interface AssessmentsPayloadAwarenessQuestions {
         corridorLocationForLeastDisturbance?: AssessmentPayloadAwarenessFields;
         avoidBlockingElephantCorridors?: AssessmentPayloadAwarenessFields;
         allocatingFieldsOnElephantCorridors?: AssessmentPayloadAwarenessFields;
+        // eslint-disable-next-line max-len
         tawanaLandBoardHaveAgreedToAvoidFieldAllocationOnTheseCorridors?: AssessmentPayloadAwarenessFields;
+        // eslint-disable-next-line max-len
         elephantCorridorsAreNotProtectedAreasButSharedWithWildlife?: AssessmentPayloadAwarenessFields;
         corridorsInTheEasternPanhandle?: AssessmentPayloadAwarenessFields;
         elephantCorridorsOfferOpportunitiesForEcotourism?: AssessmentPayloadAwarenessFields;
     }
+}
+
+export interface ConservationAgricultureFormFields {
+    fieldType?: string;
+    lowTill?: AssessmentPayloadCorridorsQuestion;
+    mulching?: AssessmentPayloadCorridorsQuestion;
+    coverCrop: AssessmentPayloadCorridorsQuestion;
+    peopleSupportedByField: {
+        label?: string;
+        answer?: number;
+    };
+    ownership: AssessmentPayloadCorridorsQuestion;
+    distanceToHomestead: {
+        label?: string;
+        answer?: number;
+    };
 }
 
 export interface AssessmentsPayload {
@@ -46,6 +64,7 @@ export interface AssessmentsPayload {
     fieldUuid?: string;
     fieldCorridorAwarenessFormFields?: AssessmentsPayloadFieldCorridorAwarenessFormFields;
     awarenessQuestions?: AssessmentsPayloadAwarenessQuestions;
+    conservationAgricultureFormFields?: ConservationAgricultureFormFields;
 }
 export interface AssessmentsData {
     uuid?: string;
@@ -56,6 +75,8 @@ export interface AssessmentsData {
     payload?: AssessmentsPayload;
     created_at?: string;
     updated_at?: string;
+    longitude?: number;
+    latitude?: number;
 }
 
 export interface EconomicData {
@@ -75,8 +96,8 @@ export interface DemographicData {
     employment_status: string;
     notes?: string;
     marital_status?: string;
-    identity_typ?: string;
-    identity_numbe?: string;
+    identity_type?: string;
+    identity_number?: string;
     relations?: [],
     geographic_0?: string;
     geographic_1?: string;
