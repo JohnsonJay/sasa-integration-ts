@@ -39,5 +39,14 @@ module.exports = {
             "ignoreTemplateLiterals": true,
         }],
         "camelcase": 0,
+        "require-jsdoc": ["error", {
+            "require": {
+                "FunctionDeclaration": false,
+                "MethodDefinition": false,
+                "ClassDeclaration": false,
+                "ArrowFunctionExpression": false,
+                "FunctionExpression": false,
+            },
+        }],
     },
 };
