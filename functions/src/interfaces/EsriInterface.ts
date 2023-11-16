@@ -61,7 +61,7 @@ export interface EsriAssessmentFeatureLayer {
 
 export interface EsriFieldFeatureLayer {
     geometry?: {
-        rings: [Location[]][]
+        rings: number[][][]
         spatialReference: {
             wkid: number;
         }

@@ -2,7 +2,6 @@ import {
     EsriAssessmentFeatureLayer,
     EsriDemographicsFeatureLayer,
     EsriFieldFeatureLayer,
-    Location,
 } from "../interfaces/EsriInterface";
 import { AssessmentsData, SasaPayload } from "../interfaces/SasaInterface";
 
@@ -105,8 +104,9 @@ export class EsriController {
         };
     }
 
-    // eslint-disable-next-line max-len
-    public build_fields_feature_layer( data: SasaPayload ): EsriFieldFeatureLayer | EsriFieldFeatureLayer[] {
+    public build_fields_feature_layer(
+        data: SasaPayload
+    ): EsriFieldFeatureLayer | EsriFieldFeatureLayer[] | undefined {
         const coordinateData = [];
         const featureLayers = [];
 
@@ -167,44 +167,46 @@ export class EsriController {
                     } = data.demographic || {};
 
                     const attributes = {
-                        farmer_uuid: uuid ? uuid : null,
-                        farmer_name: name ? name : null,
-                        farmer_created_at: created_at ? created_at : null,
-                        farmer_updated_at: updated_at ? updated_at : null,
-                        farmer_is_ca_aware: is_ca_aware ? is_ca_aware : null,
+                        farmer_uuid: uuid ? uuid : undefined,
+                        farmer_name: name ? name : undefined,
+                        farmer_created_at: created_at ? created_at : undefined,
+                        farmer_updated_at: updated_at ? updated_at : undefined,
+                        farmer_is_ca_aware: is_ca_aware ? is_ca_aware : undefined,
                         // eslint-disable-next-line max-len
-                        farmer_field_uuid: data.fields && data.fields[0] ? data.fields[0].uuid : null,
-                        farmer_gender: gender ? gender : null,
-                        farmer_identity_type: identity_type ? identity_type : null,
-                        farmer_identity_number: identity_number ? identity_number : null,
+                        farmer_field_uuid: data.fields && data.fields[0] ? data.fields[0].uuid : undefined,
+                        farmer_gender: gender ? gender : undefined,
+                        farmer_identity_type: identity_type ? identity_type : undefined,
+                        farmer_identity_number: identity_number ? identity_number : undefined,
                         // eslint-disable-next-line max-len
-                        primary_crop: data.fields && data.fields[0].primary_crop ? data.fields[0].primary_crop : null,
+                        primary_crop: data.fields && data.fields[0].primary_crop ? data.fields[0].primary_crop : undefined,
                         // eslint-disable-next-line max-len
-                        area_under_cultivation: data.fields && data.fields[0].area_under_cultivation ? data.fields[0].area_under_cultivation : null,
-                        depot: data.fields && data.fields[0].depot ? data.fields[0].depot : null,
+                        area_under_cultivation: data.fields && data.fields[0].area_under_cultivation ? data.fields[0].area_under_cultivation : undefined,
                         // eslint-disable-next-line max-len
-                        ownership: data.fields && data.fields[0].ownership ? data.fields[0].ownership : null,
+                        depot: data.fields && data.fields[0].depot ? data.fields[0].depot : undefined,
                         // eslint-disable-next-line max-len
-                        number_of_plants: data.fields && data.fields[0].number_of_plants ? data.fields[0].number_of_plants : null,
+                        ownership: data.fields && data.fields[0].ownership ? data.fields[0].ownership : undefined,
                         // eslint-disable-next-line max-len
-                        status: data.fields && data.fields[0].status ? data.fields[0].status : null,
+                        number_of_plants: data.fields && data.fields[0].number_of_plants ? data.fields[0].number_of_plants : undefined,
                         // eslint-disable-next-line max-len
-                        planted_at: data.fields && data.fields[0].planted_at ? data.fields[0].planted_at : null,
-                        score: data.fields && data.fields[0].score ? data.fields[0].score : null,
+                        status: data.fields && data.fields[0].status ? data.fields[0].status : undefined,
                         // eslint-disable-next-line max-len
-                        perimeter: data.fields && data.fields[0].perimeter ? data.fields[0].perimeter : null,
+                        planted_at: data.fields && data.fields[0].planted_at ? data.fields[0].planted_at : undefined,
                         // eslint-disable-next-line max-len
-                        expected_production: data.fields && data.fields[0].expected_production ? data.fields[0].expected_production : null,
+                        score: data.fields && data.fields[0].score ? data.fields[0].score : undefined,
                         // eslint-disable-next-line max-len
-                        expected_production_unit: data.fields && data.fields[0].expected_production_unit ? data.fields[0].expected_production_unit : null,
+                        perimeter: data.fields && data.fields[0].perimeter ? data.fields[0].perimeter : undefined,
                         // eslint-disable-next-line max-len
-                        scored_at: data.fields && data.fields[0].scored_at ? data.fields[0].scored_at : null,
+                        expected_production: data.fields && data.fields[0].expected_production ? data.fields[0].expected_production : undefined,
                         // eslint-disable-next-line max-len
-                        field_type: data.fields && data.fields[0].field_type ? data.fields[0].field_type : null,
+                        expected_production_unit: data.fields && data.fields[0].expected_production_unit ? data.fields[0].expected_production_unit : undefined,
+                        // eslint-disable-next-line max-len
+                        scored_at: data.fields && data.fields[0].scored_at ? data.fields[0].scored_at : undefined,
+                        // eslint-disable-next-line max-len
+                        field_type: data.fields && data.fields[0].field_type ? data.fields[0].field_type : undefined,
                     };
 
                     const polygonLayer = {
-                        geometry: fieldCoordinateData.length > 1 ? geometry : null,
+                        geometry: fieldCoordinateData.length > 1 ? geometry : undefined,
                         attributes,
                     };
 
@@ -267,48 +269,50 @@ export class EsriController {
             } = data.demographic || {};
 
             const attributes = {
-                farmer_uuid: uuid ? uuid : null,
-                farmer_name: name ? name : null,
-                farmer_created_at: created_at ? created_at : null,
-                farmer_updated_at: updated_at ? updated_at : null,
-                farmer_is_ca_aware: is_ca_aware ? is_ca_aware : null,
-                farmer_field_uuid: data.fields && data.fields[0] ? data.fields[0].uuid : null,
-                farmer_gender: gender ? gender : null,
-                farmer_identity_type: identity_type ? identity_type : null,
-                farmer_identity_number: identity_number ? identity_number : null,
+                farmer_uuid: uuid ? uuid : undefined,
+                farmer_name: name ? name : undefined,
+                farmer_created_at: created_at ? created_at : undefined,
+                farmer_updated_at: updated_at ? updated_at : undefined,
+                farmer_is_ca_aware: is_ca_aware ? is_ca_aware : undefined,
+                farmer_field_uuid: data.fields && data.fields[0] ? data.fields[0].uuid : undefined,
+                farmer_gender: gender ? gender : undefined,
+                farmer_identity_type: identity_type ? identity_type : undefined,
+                farmer_identity_number: identity_number ? identity_number : undefined,
                 // eslint-disable-next-line max-len
-                primary_crop: data.fields && data.fields[0].primary_crop ? data.fields [0].primary_crop : null,
+                primary_crop: data.fields && data.fields[0].primary_crop ? data.fields [0].primary_crop : undefined,
                 // eslint-disable-next-line max-len
-                area_under_cultivation: data.fields && data.fields[0].area_under_cultivation ? data.fields[0].area_under_cultivation : null,
-                depot: data.fields && data.fields[0].depot ? data.fields[0].depot : null,
+                area_under_cultivation: data.fields && data.fields[0].area_under_cultivation ? data.fields[0].area_under_cultivation : undefined,
+                depot: data.fields && data.fields[0].depot ? data.fields[0].depot : undefined,
                 // eslint-disable-next-line max-len
-                ownership: data.fields && data.fields[0].ownership ? data.fields[0].ownership : null,
+                ownership: data.fields && data.fields[0].ownership ? data.fields[0].ownership : undefined,
                 // eslint-disable-next-line max-len
-                number_of_plants: data.fields && data.fields[0].number_of_plants ? data.fields[0].number_of_plants : null,
-                status: data.fields && data.fields[0].status ? data.fields[0].status : null,
+                number_of_plants: data.fields && data.fields[0].number_of_plants ? data.fields[0].number_of_plants : undefined,
+                status: data.fields && data.fields[0].status ? data.fields[0].status : undefined,
                 // eslint-disable-next-line max-len
-                planted_at: data.fields && data.fields[0].planted_at ? data.fields[0].planted_at : null,
-                score: data.fields && data.fields[0].score ? data.fields[0].score : null,
+                planted_at: data.fields && data.fields[0].planted_at ? data.fields[0].planted_at : undefined,
+                score: data.fields && data.fields[0].score ? data.fields[0].score : undefined,
                 // eslint-disable-next-line max-len
-                perimeter: data.fields && data.fields[0].perimeter ? data.fields[0].perimeter : null,
+                perimeter: data.fields && data.fields[0].perimeter ? data.fields[0].perimeter : undefined,
                 // eslint-disable-next-line max-len
-                expected_production: data.fields && data.fields[0].expected_production ? data.fields[0].expected_production : null,
+                expected_production: data.fields && data.fields[0].expected_production ? data.fields[0].expected_production : undefined,
                 // eslint-disable-next-line max-len
-                expected_production_unit: data.fields && data.fields[0].expected_production_unit ? data.fields[0].expected_production_unit : null,
+                expected_production_unit: data.fields && data.fields[0].expected_production_unit ? data.fields[0].expected_production_unit : undefined,
                 // eslint-disable-next-line max-len
-                scored_at: data.fields && data.fields[0].scored_at ? data.fields[0].scored_at : null,
+                scored_at: data.fields && data.fields[0].scored_at ? data.fields[0].scored_at : undefined,
                 // eslint-disable-next-line max-len
-                field_type: data.fields && data.fields[0].field_type ? data.fields[0].field_type : null,
+                field_type: data.fields && data.fields[0].field_type ? data.fields[0].field_type : undefined,
             };
 
             console.info("geometry", geometry);
             console.info("attributes", attributes);
 
             return {
-                geometry: coordinateData.length > 1 ? geometry : null,
+                geometry: coordinateData.length > 1 ? geometry : undefined,
                 attributes,
             };
         }
+
+        return;
     }
 
     public create_demographics_feature_layer(): void {
