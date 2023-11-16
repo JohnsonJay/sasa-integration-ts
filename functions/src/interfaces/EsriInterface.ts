@@ -43,16 +43,25 @@ export interface EsriAssessmentFeatureLayer {
         transport?: string;
         score?: number;
         distance_to_homestead?: number;
+        created_at?: string;
+        assessment_name?: string;
+        description?: string;
+        status?: string;
+        assessment_type?: string;
+        customer_uuid?: string;
+        field_uuid?: string;
+        cover_crop?: string | boolean;
+        field_type?: string;
+        low_till?: string | boolean;
+        mulching?: string | boolean;
+        ownership?: string | boolean;
+        people_supported_by_field?: number;
     };
 }
 
 export interface EsriFieldFeatureLayer {
     geometry?: {
-        rings: [
-            [
-                Location[]
-            ]
-        ]
+        rings: [Location[]][]
         spatialReference: {
             wkid: number;
         }

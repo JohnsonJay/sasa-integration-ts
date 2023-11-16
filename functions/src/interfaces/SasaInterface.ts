@@ -156,6 +156,7 @@ export interface SasaPayload {
     created_at?: string;
     updated_at?: string;
     farm?: any;
+    is_ca_aware?: string;
     assessments?: [AssessmentsData];
     economic?: EconomicData;
     demographic?: DemographicData;
