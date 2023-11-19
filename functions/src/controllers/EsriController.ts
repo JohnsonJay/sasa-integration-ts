@@ -327,6 +327,7 @@ export class EsriController {
             return this.esri_service.add_feature_layer(demographics_layer);
         } catch (error) {
             console.error(error);
+            throw error;
         }
     }
 
@@ -336,6 +337,7 @@ export class EsriController {
             return this.esri_service.add_feature_layer(assessments_layer);
         } catch (error) {
             console.error(error);
+            throw error;
         }
     }
 
@@ -345,6 +347,7 @@ export class EsriController {
             return this.esri_service.add_feature_layer(fields_layer);
         } catch (error) {
             console.error(error);
+            throw error;
         }
     }
 }

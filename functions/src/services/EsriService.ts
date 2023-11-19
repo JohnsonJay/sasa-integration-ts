@@ -22,9 +22,12 @@ export class EsriService {
 
     public async add_feature_layer(
         data: EsriAssessmentFeatureLayer |
+            EsriAssessmentFeatureLayer[] |
             EsriFieldFeatureLayer |
-            EsriDemographicsFeatureLayer
-    ): Promise<EsriAddResult[] | null> {
+            EsriFieldFeatureLayer[] |
+            EsriDemographicsFeatureLayer |
+            EsriDemographicsFeatureLayer[]
+    ): Promise<EsriAddResult[]> {
         const url = `${this.feature_layer_url}/addFeatures?f=json`;
         const config = {
             headers: {
@@ -38,11 +41,8 @@ export class EsriService {
 
         try {
             const result: AxiosResponse<EsriResponse> = await axios.post(url, form_data, config);
-            if (result.data.addResults) {
-                console.info(result.data.addResults);
-                return result.data.addResults;
-            }
-            return null;
+            console.info(result.data.addResults);
+            return result.data.addResults;
         } catch (error) {
             console.error(error);
             throw (error);
@@ -88,6 +88,7 @@ export class EsriService {
             return result;
         } catch (error) {
             console.error(error);
+            return;
         }
     }
 
@@ -107,6 +108,7 @@ export class EsriService {
             return result;
         } catch (error) {
             console.error(error);
+            return;
         }
     }
 }
