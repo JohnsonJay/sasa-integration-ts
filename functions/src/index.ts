@@ -1,12 +1,19 @@
 import * as functions from "firebase-functions";
-import { SasaController } from "./controllers/SasaController";
 import * as admin from "firebase-admin";
+import { SasaService } from "./services/SasaService";
+import { EsriController } from "./controllers/EsriController";
+import { EsriService } from "./services/EsriService";
+import { FirebaseController } from "./controllers/FirebaseController";
 
 admin.initializeApp();
 
-export const helloWorld = functions.https.onRequest((request, response) => {
-    functions.logger.info("Hello logs!", { structuredData: true });
-    const sasaController = new SasaController();
-    console.log(sasaController.getSasaData());
-    response.send("Hello from Firebase!");
+export const daily_data_sync = functions.pubsub.schedule("50 4 * * *").onRun(async (context) => {
+    const sasa_service = new SasaService();
+    const esri_service = new EsriService();
+    const esri_controller = new EsriController(esri_service);
+    const firebase_controller = new FirebaseController(
+        sasa_service,
+        esri_controller
+    );
+    await firebase_controller.add_sasa_data();
 });

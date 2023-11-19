@@ -24,7 +24,7 @@ interface FirebaseQueryParams {
     event_type: EventType
 }
 
-class FirebaseController {
+export class FirebaseController {
     constructor(
         private sasa_service: SasaService,
         private esri_controller: EsriController,

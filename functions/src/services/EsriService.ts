@@ -17,7 +17,7 @@ export enum FeatureLayerAction {
  */
 export class EsriService {
     constructor(
-        public feature_layer_url: string
+        private feature_layer_url?: string
     ) {}
 
     public async add_feature_layer(
