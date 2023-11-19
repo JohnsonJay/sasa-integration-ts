@@ -1,14 +1,20 @@
 import {
+    EsriAddResult,
     EsriAssessmentFeatureLayer,
     EsriDemographicsFeatureLayer,
     EsriFieldFeatureLayer,
 } from "../interfaces/EsriInterface";
 import { AssessmentsData, SasaPayload } from "../interfaces/SasaInterface";
+import { EsriService } from "../services/EsriService";
 
 /**
  * Controller class for Esri Data
  */
 export class EsriController {
+    constructor(
+        private esri_service: EsriService
+    ) {}
+
     public build_demographics_feature_layer( data: SasaPayload ): EsriDemographicsFeatureLayer {
         let location = null;
         if ( data.demographic?.location ) {
@@ -315,12 +321,30 @@ export class EsriController {
         return;
     }
 
-    public create_demographics_feature_layer(): void {
+    // eslint-disable-next-line max-len
+    public async create_demographics_feature_layer(demographics_layer: EsriDemographicsFeatureLayer[]): Promise<EsriAddResult[]> {
+        try {
+            return this.esri_service.add_feature_layer(demographics_layer);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    public create_assessments_feature_layer(): void {
+    // eslint-disable-next-line max-len
+    public async create_assessments_feature_layer(assessments_layer: EsriAssessmentFeatureLayer[]): Promise<EsriAddResult[]> {
+        try {
+            return this.esri_service.add_feature_layer(assessments_layer);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    public create_fields_feature_layer(): void {
+    // eslint-disable-next-line max-len
+    public create_fields_feature_layer(fields_layer: EsriFieldFeatureLayer[]): Promise<EsriAddResult[]> {
+        try {
+            return this.esri_service.add_feature_layer(fields_layer);
+        } catch (error) {
+            console.error(error);
+        }
     }
 }
