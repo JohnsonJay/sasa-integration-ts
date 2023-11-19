@@ -8,4 +8,17 @@ export enum FeatureState {
     delete_pending = "DELETE_PENDING",
     delete_success = "DELETE_SUCCESS",
     delete_failure = "DELETE_FAILURE"
-};
+}
+
+export enum FeatureLayerType {
+    assessments = "ASSESSMENTS",
+    fields = "FIELDS",
+    demographics = "DEMOGRAPHICS"
+}
+
+export enum FeatureLayerDBRef {
+    sasa_raw_data = "sasa-raw-data",
+    assessments = "assessments-feature-layers",
+    demographics = "demographics-feature-layers",
+    fields = "fields-feature-layers"
+}
