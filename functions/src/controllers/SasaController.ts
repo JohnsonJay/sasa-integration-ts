@@ -1,10 +1,14 @@
-import { fetch_sasa_data } from "../services/SasaService";
+import { SasaService } from "../services/SasaService";
 
 /**
  * Controller class for SasaData
  */
 export class SasaController {
+    constructor(
+        private sasa_service: SasaService
+    ) {
+    }
     public async getSasaData() {
-        return await fetch_sasa_data();
+        return await this.sasa_service.fetch_sasa_data();
     }
 }

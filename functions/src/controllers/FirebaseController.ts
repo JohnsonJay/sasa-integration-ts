@@ -26,8 +26,9 @@ interface FirebaseQueryParams {
 
 export class FirebaseController {
     constructor(
-        private sasa_service: SasaService,
+
         private esri_controller: EsriController,
+        private sasa_service?: SasaService,
     ) {}
 
     private async _get_snapshot(
@@ -43,6 +44,8 @@ export class FirebaseController {
     }
     public async add_sasa_data() {
         try {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             const sasa_data: SasaPayload[] = await this.sasa_service.fetch_sasa_data();
             if (!sasa_data) {
                 throw new Error( "No data from SASA API" );
@@ -282,5 +285,23 @@ export class FirebaseController {
         }
 
         return farmer_list;
+    }
+
+    public async add_assessment_object_id(
+        farmer_uuid: string,
+        state: FeatureState,
+        object_id?: number,
+    ): Promise<void> {
+        try {
+            await admin.database()
+                .ref("assessments-feature-layers/assessments-layers-list")
+                .child(farmer_uuid)
+                .update({
+                    OBJECTID: object_id ? object_id : null,
+                    state: state,
+                });
+        } catch (error) {
+            console.error(error);
+        }
     }
 }

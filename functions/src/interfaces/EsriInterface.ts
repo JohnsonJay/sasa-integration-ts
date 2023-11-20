@@ -25,7 +25,7 @@ export interface EsriAssessmentFeatureLayer {
         }
     };
     attributes: {
-        farmer_uuid?: string;
+        farmer_uuid: string;
         farmer_name?: string;
         farmer_gender?: string;
         identity_type?: string;
