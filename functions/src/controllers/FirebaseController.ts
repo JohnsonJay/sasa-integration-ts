@@ -304,4 +304,22 @@ export class FirebaseController {
             console.error(error);
         }
     }
+
+    public async add_demographics_object_id(
+        farmer_uuid: string,
+        state: FeatureState,
+        object_id?: number,
+    ): Promise<void> {
+        try {
+            await admin.database()
+                .ref("demographics-feature-layers/demographics-layers-list")
+                .child(farmer_uuid)
+                .update({
+                    OBJECTID: object_id ? object_id : null,
+                    state: state,
+                });
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }
