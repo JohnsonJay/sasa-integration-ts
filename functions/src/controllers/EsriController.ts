@@ -88,7 +88,7 @@ export class EsriController {
                 },
             } : undefined,
             attributes: {
-                farmer_uuid: uuid,
+                farmer_uuid: uuid ? uuid : "",
                 created_at: created_at,
                 score: score ? parseFloat( score ) : undefined,
                 assessment_name: assessment_name,

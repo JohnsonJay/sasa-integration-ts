@@ -6,7 +6,11 @@ import { SasaService } from "../services/SasaService";
 import { SasaPayload } from "../interfaces/SasaInterface";
 import { EsriController } from "./EsriController";
 import { FeatureLayerDBRef, FeatureLayerType, FeatureState } from "../interfaces/FirebaseInterface";
-import { EsriAssessmentFeatureLayer } from "../interfaces/EsriInterface";
+import {
+    EsriAssessmentFeatureLayer,
+    EsriDemographicsFeatureLayer,
+    EsriFieldFeatureLayer
+} from "../interfaces/EsriInterface";
 import DataSnapshot = database.DataSnapshot;
 
 type EventType =
@@ -230,7 +234,12 @@ export class FirebaseController {
     public async get_feature_layers(
         feature_layer_type: FeatureLayerType = FeatureLayerType.assessments
     ):
-        Promise<EsriAssessmentFeatureLayer[] | undefined> {
+        Promise<
+            EsriAssessmentFeatureLayer[] |
+            EsriDemographicsFeatureLayer[] |
+            EsriFieldFeatureLayer[] |
+            undefined
+        > {
         let firebase_query_params: FirebaseQueryParams;
         let feature_layer_db_ref: FeatureLayerDBRef;
 
