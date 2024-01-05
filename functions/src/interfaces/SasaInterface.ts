@@ -93,7 +93,7 @@ export interface DemographicData {
     birthdate?: string;
     level_of_education?: string;
     work_type?: string;
-    employment_status: string;
+    employment_status?: string;
     notes?: string;
     marital_status?: string;
     identity_type?: string;
@@ -117,7 +117,7 @@ export interface DemographicData {
 }
 
 export interface MapFieldData {
-    accuracy: number;
+    accuracy?: number;
     longitude: number;
     latitude: number;
 }
@@ -145,7 +145,7 @@ export interface FieldData {
     field_type?: string;
     created_at?: string;
     updated_at?: string;
-    map: [MapFieldData]
+    map: MapFieldData[]
 }
 
 export interface SasaPayload {
